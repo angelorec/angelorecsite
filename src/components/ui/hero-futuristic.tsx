@@ -38,15 +38,15 @@ export const HeroFuturistic = () => {
     };
 
     return (
-        <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
+        <section className="relative min-h-[100dvh] w-full flex items-center justify-center overflow-hidden">
             <motion.div
-                className="uppercase items-center z-10 pointer-events-none px-6 flex justify-center flex-col text-center"
+                className="uppercase items-center z-10 pointer-events-none px-4 flex justify-center flex-col text-center"
                 initial="hidden"
                 animate="visible"
                 variants={containerVariants}
             >
-                <div className="text-5xl md:text-7xl xl:text-8xl 2xl:text-9xl font-black tracking-tighter drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)] leading-none" style={{ fontFamily: 'var(--font-space-grotesk)' }}>
-                    <div className="flex flex-wrap justify-center gap-x-4 md:gap-x-8">
+                <div className="text-4xl xs:text-5xl md:text-7xl xl:text-8xl 2xl:text-9xl font-black tracking-tighter drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)] leading-none" style={{ fontFamily: 'var(--font-space-grotesk)' }}>
+                    <div className="flex flex-wrap justify-center gap-x-3 md:gap-x-8">
                         {titleWords.map((word, index) => (
                             <motion.span
                                 key={index}
@@ -61,7 +61,7 @@ export const HeroFuturistic = () => {
                 </div>
 
                 <motion.div
-                    className="text-sm md:text-2xl xl:text-3xl mt-6 font-bold tracking-[0.2em] text-primary drop-shadow-lg"
+                    className="text-[0.7rem] xs:text-xs md:text-2xl xl:text-3xl mt-4 md:mt-6 font-bold tracking-[0.1em] xs:tracking-[0.2em] text-primary drop-shadow-lg"
                     initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}
                     animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                     transition={{

@@ -36,6 +36,7 @@
   --color-ring: var(--ring);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --breakpoint-xs: 375px;
 }
 
 html {
@@ -117,9 +118,11 @@ body {
 
 @media (max-width: 768px) {
   .explore-btn {
-    bottom: 20px;
-    padding: 8px 20px;
-    font-size: 0.75rem;
+    bottom: 40px;
+    padding: 10px 24px;
+    font-size: 0.7rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
   }
 }
 
