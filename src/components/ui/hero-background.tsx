@@ -79,8 +79,11 @@ const Scene = () => {
         const flow = oneMinus(smoothstep(0, 0.02, abs(depth.sub(uniforms.uProgress))));
         const mask = vec3(10, 0, 0).mul(flow).mul(0.5);
 
+        // Radial fade to avoid hard edges
+        const radialMask = oneMinus(smoothstep(0.3, 0.5, uv().distance(0.5)));
+
         return new THREE.MeshBasicNodeMaterial({
-            colorNode: add(tMap, mask),
+            colorNode: add(tMap, mask).mul(radialMask),
             transparent: true,
             opacity: 1
         });
@@ -111,20 +114,26 @@ export const HeroBackground = () => {
     }, []);
 
     return (
-        <div className="fixed inset-0 z-0 pointer-events-none">
+        <div className="fixed inset-0 z-0 pointer-events-none bg-[#0a0a0a]">
             <Canvas
                 flat
                 dpr={isMobile ? 1 : [1, 1.5]}
+                style={{ background: '#0a0a0a' }}
                 gl={async (props) => {
-                    const renderer = new THREE.WebGPURenderer({ ...props, antialias: false } as any);
+                    const renderer = new THREE.WebGPURenderer({
+                        ...props,
+                        antialias: false,
+                        alpha: true
+                    } as any);
                     await renderer.init();
+                    renderer.setClearColor(new THREE.Color(0x0a0a0a), 1);
                     return renderer;
                 }}
             >
                 {!isMobile && <PostProcessing strength={0.6} threshold={1.2} />}
                 <Scene />
             </Canvas>
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/10 to-background pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/0 via-[#0a0a0a]/20 to-[#0a0a0a] pointer-events-none" />
         </div>
     );
 };
